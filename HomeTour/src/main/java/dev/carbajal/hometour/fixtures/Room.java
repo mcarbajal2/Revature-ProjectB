@@ -20,9 +20,7 @@ public class Room extends Fixture{
 	}
 		
 	public Room getExit(Room room, String userInput) {
-		
-		//if north return Room at roomExits index 1	
-				
+					
 		if (userInput.equalsIgnoreCase("north")) {
 			
 			room = roomExits[0];
@@ -43,5 +41,4 @@ public class Room extends Fixture{
 		
 		return room;
 	}
-
 }

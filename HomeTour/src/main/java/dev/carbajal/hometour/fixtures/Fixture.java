@@ -59,5 +59,4 @@ public abstract class Fixture {
 		
 		return "Fixture [name = " + name + ", shortDesc = " + shortDesc + ", longDesc = " + longDesc + "]";
 	}
-	
 }

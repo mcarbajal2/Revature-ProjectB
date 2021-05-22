@@ -2,59 +2,113 @@ package dev.carbajal.hometour.game;
 
 import java.util.Scanner;
 
+import dev.carbajal.hometour.fixtures.Room;
+
 public class Main {
 
 	private static Scanner scanner = new Scanner(System.in);
-	static String[] userInput;
 	static boolean gameStatus = true;
 	static RoomManager rm = new RoomManager(9);
 	static Player guest = new Player();
+	static String[] userInput;
+	static Room currentRoom;
+	static Room exit;
+	static String userChoice;
+	static String direction;
+
 
 	public static void main(String[] args) {
 
-		// Creating the rooms and the player's starting position
+		// Creating the rooms and setting the player's starting position
 
 		rm.init();		
 		guest.setCurrentRoom(rm.getStartingRoom());
+		currentRoom = guest.getCurrentRoom();
 
 		// Introduction text just to create a silly scenario~
 
 		System.out.println("Welcome Human Customer #2576! \nI, Hospitality A.I. Ver. 2.1, will be serving as your Home Tour Guide today! \n\nOur Real Estate Agency is suggesting this house "
-				+ "to you based on your specified budget and needs. \nWhile you have already seen several homes, I hop that today is the lucky day you find your dream house! \nNow! Onto "
-				+ "the tour~! Feel free to stop and 'look around' at any point in time. *wink wink* \nYou can also let me know a specific direction that you would like to travel. \n"
-				+ "You can also end the tour at anytime by letting me know you'd like to 'Leave', but why would you ever want to? Ha ha ha...");
+				+ "to you based on your\nspecified budget and needs. While you have already seen several homes, \nI hope that today is the lucky day you find your dream house! Now!\nOnto "
+				+ "the tour~! Feel free to stop and 'look around' at any point in time.\n*wink wink* \nYou can also let me know a specific direction that you would like to travel. \n"
+				+ "You can also end the tour at anytime by letting me know you'd like to 'leave', but why would you ever want to?\nHa ha ha ha ha...\n\n");
 
 		// Running the Home Tour!
 
+		printRoom(guest);
+
 		while (gameStatus != false) {
-
-			// Print Current Room's Name and Short Description as currentRoom changes
-
-			printRoom(guest);
 
 			collectInput();
 
-			// Quit if user inputs 'leave'
-
-			for (int i = 0; i < userInput.length; i++) {
-
-				if (userInput[i].equalsIgnoreCase("leave")) {
-
-					gameStatus = false;
-				} 
-			}
-
-			// Otherwise Home Tour continues
-
 			parse(userInput, guest);
 
-			// get exit and change room if exit exists, otherwise tell user not a valid direction to move
+			if (userChoice != null) {
 
-			
+				switch (userChoice) {
 
+				// Quit if user inputs 'leave'
+
+				case "leave":
+
+					gameStatus = false;
+					break;
+
+					// Print Current Room's Long Description if user inputs 'look' keyword
+
+				case "look":
+
+					System.out.println(guest.getCurrentRoom().getLongDesc());
+					break;
+
+				case "move":
+
+					// Set the Player's Current Room to the exit
+
+					switch (direction) {
+
+					case "north":
+
+						guest.setCurrentRoom(exit);
+						printRoom(guest);
+						break;
+
+					case "south":
+
+						guest.setCurrentRoom(exit);
+						printRoom(guest);
+						break;
+
+					case "east":
+
+						guest.setCurrentRoom(exit);
+						printRoom(guest);
+						break;
+
+					case "west":
+
+						guest.setCurrentRoom(exit);
+						printRoom(guest);
+						break;
+
+					default:
+
+						System.out.println("Silly human there is nothing there but a wall!\n"
+								+ "Try going in a different direction.");
+						break;
+					}
+
+					break;
+
+				default:
+					break;
+				}
+
+			} else {
+				continue;
+			}
 		}
-
 	}
+
 
 	// Methods
 
@@ -77,37 +131,51 @@ public class Main {
 
 		for (int i = 0; i < command.length; i++) {
 
-			// Print Current Room's Long Description if user inputs 'look' keyword
+			if (userInput[i].equalsIgnoreCase("leave")) {
 
-			if (command[i].equalsIgnoreCase("look")) {
-
-				System.out.println(p.getCurrentRoom().getLongDesc());
+				userChoice = "leave";
 			} 
 
-			// Get exits if user inputs direction
+			else if (command[i].equalsIgnoreCase("look")) {
+
+				userChoice = "look";
+			} 
+
+			// Get exits if user inputs a direction
 
 			else if (command[i].equalsIgnoreCase("north")) {
 
-				
+				exit = currentRoom.getExit(currentRoom, "north");
+				userChoice = "move";
+				direction = "north";
 
 			} else if (command[i].equalsIgnoreCase("south")) {
 
-				
+				exit = currentRoom.getExit(currentRoom, "south");
+				userChoice = "move";
+				direction = "south";
 
 			} else if (command[i].equalsIgnoreCase("east")) {
 
-				
+				exit = currentRoom.getExit(currentRoom, "east");
+				userChoice = "move";
+				direction = "east";
 
 			} else if (command[i].equalsIgnoreCase("west")) {
 
-				
+				exit = currentRoom.getExit(currentRoom, "west");
+				userChoice = "move";
+				direction = "west";
+
+			} else {
+
+				System.out.println("I'm sorry, my human speech recognition software doesn't recognize those words!\n"
+						+ "Please try again!!!");
 
 			}
 
-			// can also use if else to parse for item names (if in that room) and print out a description here
+			// can also use if else to parse for item names (if in that room) and print out a description here if time
 
 		}
-
 	}
-
 }

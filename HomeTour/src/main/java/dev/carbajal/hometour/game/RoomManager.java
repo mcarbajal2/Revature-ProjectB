@@ -119,7 +119,6 @@ public class RoomManager {
 		
 		Room[] patioExits = {null, living, null, null};
 		
-		
 		yard.setExits(yardExits);
 		dining.setExits(diningExits);
 		kitchen.setExits(kitchenExits);
@@ -129,27 +128,8 @@ public class RoomManager {
 		bed.setExits(bedExits);
 		bath.setExits(bathExits);
 		patio.setExits(patioExits);
-		
-		/* Floor Plan Layout for my reference:
-		 * 
-		 * Yard (->(N) Dining, ->(W) null, ->(E) null, ->(S) null)
-		 * Dining Room (Yard <-(S), ->(N) Living , ->(W) Kitchen, ->(E) Master Bed)
-		 * Kitchen (Dining <-(E), ->(N) null, ->(W) null, ->(S) null)
-		 * Living Room (->(N) Patio, ->(E) Bed, ->(S) Dining, ->(W) null)
-		 * Master Bedroom (Dining <-(W), ->(S) Master Bath, ->(N) null, (E) null)
-		 * Master Bath (Master Bed <-(N), ->(W) null, ->(E) null, ->(S) null)
-		 * Bedroom (Living <-(W) Bath ->(S), ->(N) null, ->(E) null)
-		 * Bathroom (Bed <-(N), ->(W) null, ->(E) null, ->(S) null)
-		 * Patio (Living <-(S), ->(N) null, ->(W) null, ->(E) null)
-		 * 
-		 * */
 
 		setStartingRoom(yard);
 
 	}
-
-
-
-
-
 }
