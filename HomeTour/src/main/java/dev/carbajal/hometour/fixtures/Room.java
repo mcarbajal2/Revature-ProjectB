@@ -8,8 +8,7 @@ public class Room extends Fixture{
 	
 	public Room(String name, String shortDesc, String longDesc) {
 		
-		super(name, shortDesc, longDesc);
-		
+		super(name, shortDesc, longDesc);	
 	}
 	
 	// Getters and Setters
@@ -33,10 +32,9 @@ public class Room extends Fixture{
 			
 			room = roomExits[2];
 			
-		} else if (userInput.equalsIgnoreCase("west")) {
+		} else {
 			
-			room = roomExits[3];
-			
+			room = roomExits[3];	
 		}
 		
 		return room;

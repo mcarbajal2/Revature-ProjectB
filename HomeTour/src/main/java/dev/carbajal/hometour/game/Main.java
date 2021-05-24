@@ -62,7 +62,7 @@ public class Main {
 
 				case "move":
 
-					// Set the Player's Current Room to the exit
+					// Set the Player's Current Room to the exit if a valid one was chosen by the user
 
 					switch (direction) {
 
@@ -91,9 +91,6 @@ public class Main {
 						break;
 
 					default:
-
-						System.out.println("Silly human there is nothing there but a wall!\n"
-								+ "Try going in a different direction.");
 						break;
 					}
 
@@ -137,6 +134,8 @@ public class Main {
 			} 
 
 			else if (command[i].equalsIgnoreCase("look")) {
+				
+				// can also parse for "look at" for item (checking if in that room) and print out a description here if time
 
 				userChoice = "look";
 			} 
@@ -145,37 +144,70 @@ public class Main {
 
 			else if (command[i].equalsIgnoreCase("north")) {
 
-				exit = currentRoom.getExit(currentRoom, "north");
-				userChoice = "move";
-				direction = "north";
+				if (currentRoom.getExit(currentRoom, "north") != null) {
+
+					exit = currentRoom.getExit(currentRoom, "north");
+					userChoice = "move";
+					direction = "north";
+
+				} else {
+
+					userChoice = "invalid";
+					System.out.println("Silly human there is nothing to see in that direction!\n"
+							+ "Try going another way.");
+				}
 
 			} else if (command[i].equalsIgnoreCase("south")) {
 
-				exit = currentRoom.getExit(currentRoom, "south");
-				userChoice = "move";
-				direction = "south";
+				if (currentRoom.getExit(currentRoom, "south") != null) {
+
+					exit = currentRoom.getExit(currentRoom, "south");
+					userChoice = "move";
+					direction = "south";
+
+				} else {
+
+					userChoice = "invalid";
+					System.out.println("Silly human there is nothing to see in that direction!\n"
+							+ "Try going another way.");
+				}
 
 			} else if (command[i].equalsIgnoreCase("east")) {
 
-				exit = currentRoom.getExit(currentRoom, "east");
-				userChoice = "move";
-				direction = "east";
+				if (currentRoom.getExit(currentRoom, "east") != null) {
+
+					exit = currentRoom.getExit(currentRoom, "east");
+					userChoice = "move";
+					direction = "east";
+
+				} else {
+
+					userChoice = "invalid";
+					exit = null;
+					System.out.println("Silly human there is nothing to see in that direction!\n"
+							+ "Try going another way.");
+				}
 
 			} else if (command[i].equalsIgnoreCase("west")) {
 
-				exit = currentRoom.getExit(currentRoom, "west");
-				userChoice = "move";
-				direction = "west";
+				if (currentRoom.getExit(currentRoom, "west") != null) {
+
+					exit = currentRoom.getExit(currentRoom, "west");
+					userChoice = "move";
+					direction = "west";
+
+				} else {
+
+					userChoice = "invalid";
+					System.out.println("Silly human there is nothing to see in that direction!\n"
+							+ "Try going another way.");
+				}
 
 			} else {
 
 				System.out.println("I'm sorry, my human speech recognition software doesn't recognize those words!\n"
 						+ "Please try again!!!");
-
 			}
-
-			// can also use if else to parse for item names (if in that room) and print out a description here if time
-
 		}
 	}
 }
