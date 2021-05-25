@@ -22,21 +22,21 @@ public class Main {
 
 		rm.init();		
 		guest.setCurrentRoom(rm.getStartingRoom());
-//		currentRoom = guest.getCurrentRoom();
 
 		// Introduction text just to create a silly scenario~
 
 		System.out.println("Welcome Human Customer #2576! \nI, Hospitality A.I. Ver. 2.1, will be serving as your Home Tour Guide today! \n\nOur Real Estate Agency is suggesting this house "
 				+ "to you based on your\nspecified budget and needs. While you have already seen several homes, \nI hope that today is the lucky day you find your dream house! Now!\nOnto "
-				+ "the tour~! Feel free to stop and 'look around' at any point in time.\n*wink wink* \nYou can also let me know a specific direction that you would like to travel. \n"
-				+ "You can also end the tour at anytime by letting me know you'd like to 'leave', but why would you ever want to?\nHa ha ha ha ha...\n\n");
+				+ "the tour~! Feel free to stop and 'look around' at any point in time.\n*wink wink* \nYou can also let me know a direction (North/South/etc.) that you would like to travel. \n"
+				+ "\nEnd this tour at anytime by letting me know you'd like to 'leave', but why would you ever want to?\nHa ha ha ha ha...\n___________________________________________________"
+				+ "_______________________________________________\n");
 
 		// Running the Home Tour!
 
 		printRoom(guest);
 
 		while (gameStatus != false) {
-			
+
 			collectInput();
 
 			parse(userInput, guest);
@@ -49,6 +49,8 @@ public class Main {
 
 				case "leave":
 
+					System.out.println("\nAlright I hope you enjoyed the tour! If this place\nsuits your needs please ring up the Agency "
+							+ "later\nand let us know, we'll get you situated straight away!\n\nGoodbye!! ");
 					gameStatus = false;
 					break;
 
@@ -133,7 +135,7 @@ public class Main {
 			} 
 
 			else if (command[i].equalsIgnoreCase("look")) {
-				
+
 				// can also parse for "look at" for item (checking if in that room) and print out a description here if time
 
 				userChoice = "look";
@@ -154,7 +156,7 @@ public class Main {
 
 					userChoice = "invalid";
 					System.out.println("Silly human there is nothing to see in that direction!\n"
-							+ "Try going another way.");
+							+ "Try going another way.\n");
 				}
 
 			} else if (command[i].equalsIgnoreCase("south")) {
@@ -169,7 +171,7 @@ public class Main {
 
 					userChoice = "invalid";
 					System.out.println("Silly human there is nothing to see in that direction!\n"
-							+ "Try going another way.");
+							+ "Try going another way.\n");
 				}
 
 			} else if (command[i].equalsIgnoreCase("east")) {
@@ -184,7 +186,7 @@ public class Main {
 
 					userChoice = "invalid";
 					System.out.println("Silly human there is nothing to see in that direction!\n"
-							+ "Try going another way.");
+							+ "Try going another way.\n");
 				}
 
 			} else if (command[i].equalsIgnoreCase("west")) {
@@ -199,14 +201,14 @@ public class Main {
 
 					userChoice = "invalid";
 					System.out.println("Silly human there is nothing to see in that direction!\n"
-							+ "Try going another way.");
+							+ "Try going another way.\n");
 				}
 
 			} else {
 
 				userChoice = "invalid";
-				System.out.println("I'm sorry, my human speech recognition software doesn't recognize those words!\n"
-						+ "Please try again!!!");
+				System.out.println("I'm sorry, my human speech recognition software doesn't recognize some of those words!\n"
+						+ "Please try again!!!\n");
 			}
 		}
 	}
