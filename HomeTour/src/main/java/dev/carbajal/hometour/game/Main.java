@@ -12,7 +12,6 @@ public class Main {
 	static Player guest = new Player();
 	static String[] userInput;
 	static Room currentRoom;
-	static Room exit;
 	static String userChoice;
 	static String direction;
 
@@ -68,25 +67,25 @@ public class Main {
 
 					case "north":
 
-						guest.setCurrentRoom(exit);
+						guest.setCurrentRoom(currentRoom.getExit(currentRoom, "north"));
 						printRoom(guest);
 						break;
 
 					case "south":
 
-						guest.setCurrentRoom(exit);
+						guest.setCurrentRoom(currentRoom.getExit(currentRoom, "south"));
 						printRoom(guest);
 						break;
 
 					case "east":
 
-						guest.setCurrentRoom(exit);
+						guest.setCurrentRoom(currentRoom.getExit(currentRoom, "east"));
 						printRoom(guest);
 						break;
 
 					case "west":
 
-						guest.setCurrentRoom(exit);
+						guest.setCurrentRoom(currentRoom.getExit(currentRoom, "west"));
 						printRoom(guest);
 						break;
 
@@ -138,6 +137,7 @@ public class Main {
 				// can also parse for "look at" for item (checking if in that room) and print out a description here if time
 
 				userChoice = "look";
+				break;
 			} 
 
 			// Get exits if user inputs a direction
@@ -146,9 +146,9 @@ public class Main {
 
 				if (currentRoom.getExit(currentRoom, "north") != null) {
 
-					exit = currentRoom.getExit(currentRoom, "north");
 					userChoice = "move";
 					direction = "north";
+					break;
 
 				} else {
 
@@ -161,9 +161,9 @@ public class Main {
 
 				if (currentRoom.getExit(currentRoom, "south") != null) {
 
-					exit = currentRoom.getExit(currentRoom, "south");
 					userChoice = "move";
 					direction = "south";
+					break;
 
 				} else {
 
@@ -176,14 +176,13 @@ public class Main {
 
 				if (currentRoom.getExit(currentRoom, "east") != null) {
 
-					exit = currentRoom.getExit(currentRoom, "east");
 					userChoice = "move";
 					direction = "east";
+					break;
 
 				} else {
 
 					userChoice = "invalid";
-					exit = null;
 					System.out.println("Silly human there is nothing to see in that direction!\n"
 							+ "Try going another way.");
 				}
@@ -192,9 +191,9 @@ public class Main {
 
 				if (currentRoom.getExit(currentRoom, "west") != null) {
 
-					exit = currentRoom.getExit(currentRoom, "west");
 					userChoice = "move";
 					direction = "west";
+					break;
 
 				} else {
 
