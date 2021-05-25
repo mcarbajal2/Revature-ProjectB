@@ -22,7 +22,7 @@ public class Main {
 
 		rm.init();		
 		guest.setCurrentRoom(rm.getStartingRoom());
-		currentRoom = guest.getCurrentRoom();
+//		currentRoom = guest.getCurrentRoom();
 
 		// Introduction text just to create a silly scenario~
 
@@ -36,7 +36,7 @@ public class Main {
 		printRoom(guest);
 
 		while (gameStatus != false) {
-
+			
 			collectInput();
 
 			parse(userInput, guest);
@@ -67,25 +67,25 @@ public class Main {
 
 					case "north":
 
-						guest.setCurrentRoom(currentRoom.getExit(currentRoom, "north"));
+						guest.setCurrentRoom(guest.getCurrentRoom().getExit(currentRoom, "north"));
 						printRoom(guest);
 						break;
 
 					case "south":
 
-						guest.setCurrentRoom(currentRoom.getExit(currentRoom, "south"));
+						guest.setCurrentRoom(guest.getCurrentRoom().getExit(currentRoom, "south"));
 						printRoom(guest);
 						break;
 
 					case "east":
 
-						guest.setCurrentRoom(currentRoom.getExit(currentRoom, "east"));
+						guest.setCurrentRoom(guest.getCurrentRoom().getExit(currentRoom, "east"));
 						printRoom(guest);
 						break;
 
 					case "west":
 
-						guest.setCurrentRoom(currentRoom.getExit(currentRoom, "west"));
+						guest.setCurrentRoom(guest.getCurrentRoom().getExit(currentRoom, "west"));
 						printRoom(guest);
 						break;
 
@@ -144,7 +144,7 @@ public class Main {
 
 			else if (command[i].equalsIgnoreCase("north")) {
 
-				if (currentRoom.getExit(currentRoom, "north") != null) {
+				if (guest.getCurrentRoom().getExit(currentRoom, "north") != null) {
 
 					userChoice = "move";
 					direction = "north";
@@ -159,7 +159,7 @@ public class Main {
 
 			} else if (command[i].equalsIgnoreCase("south")) {
 
-				if (currentRoom.getExit(currentRoom, "south") != null) {
+				if (guest.getCurrentRoom().getExit(currentRoom, "south") != null) {
 
 					userChoice = "move";
 					direction = "south";
@@ -174,7 +174,7 @@ public class Main {
 
 			} else if (command[i].equalsIgnoreCase("east")) {
 
-				if (currentRoom.getExit(currentRoom, "east") != null) {
+				if (guest.getCurrentRoom().getExit(currentRoom, "east") != null) {
 
 					userChoice = "move";
 					direction = "east";
@@ -189,7 +189,7 @@ public class Main {
 
 			} else if (command[i].equalsIgnoreCase("west")) {
 
-				if (currentRoom.getExit(currentRoom, "west") != null) {
+				if (guest.getCurrentRoom().getExit(currentRoom, "west") != null) {
 
 					userChoice = "move";
 					direction = "west";
@@ -204,6 +204,7 @@ public class Main {
 
 			} else {
 
+				userChoice = "invalid";
 				System.out.println("I'm sorry, my human speech recognition software doesn't recognize those words!\n"
 						+ "Please try again!!!");
 			}

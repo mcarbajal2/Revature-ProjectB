@@ -4,11 +4,11 @@ import dev.carbajal.hometour.fixtures.Room;
 
 public class Player {
 	
-	Room currentRoom;
+	private Room currentRoom;
 	
 	public Room getCurrentRoom() {
 		
-		return currentRoom;
+		return this.currentRoom;
 	}
 
 	public void setCurrentRoom(Room currentRoom) {
